@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EASYPAIE - Gestion de Paie</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="static/css/style.css">
+</head>
+<body>
+    <!-- Header / Navbar -->
+    <header>
+        <nav>
+            <img src="static/img/logo.png" alt="Logo EASYPAIE" class="logo">
+            <ul>
+                <li><a href="#about">À propos</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#tarifs">Tarifs</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero fade-in">
+        <div class="hero-content">
+            <h1>GESTION DE PAIE — SIMPLE & SÉCURISÉ</h1>
+            <p>Externalisez la paie. Respectez la législation. Gagnez du temps.<br>EASYPAIE gère la paie de A à Z pour votre entreprise.</p>
+            <a href="#tarifs" class="btn btn-main">Voir les tarifs</a>
+            <a href="#contact" class="btn btn-outline-primary">Contactez-nous</a>
+            <div class="badges">
+                <span>CNAPS • OSTIE • IRSA</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="fade-in">
+        <h2>À propos de EASYPAIE</h2>
+        <p>EASYPAIE est votre partenaire de confiance pour la gestion complète de la paie. Nous assurons conformité légale, fiabilité et rapidité pour toutes les entreprises, petites ou grandes.</p>
+        <p>Notre équipe experte se charge de tout : calculs salariaux, déclarations sociales et fiscales, rapports personnalisés. Vous gagnez du temps et réduisez les risques d'erreurs.</p>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="fade-in">
+        <h2>Nos Services</h2>
+        <div class="services-container">
+            <div class="service-card">
+                <img src="static/img/service1.png" alt="Service 1">
+                <h3>Gestion de Paie</h3>
+                <p>Calcul complet des salaires, déclarations sociales et bulletins personnalisés.</p>
+            </div>
+            <div class="service-card">
+                <img src="static/img/service2.png" alt="Service 2">
+                <h3>Reporting & Analyse</h3>
+                <p>Tableaux de bord et rapports pour un suivi précis de votre masse salariale.</p>
+            </div>
+            <div class="service-card">
+                <img src="static/img/service3.png" alt="Service 3">
+                <h3>Accompagnement Légal</h3>
+                <p>Conseil en conformité légale et optimisation des coûts liés à la paie.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tarifs Section -->
+    <section id="tarifs" class="fade-in">
+        <h2>Nos Tarifs</h2>
+        <div class="pricing">
+            <div class="pricing-card">
+                <h3>Basique</h3>
+                <p><strong>15 000 Ar</strong> / salarié</p>
+                <ul>
+                    <li>Calcul et bulletins de paie</li>
+                    <li>Déclarations sociales CNAPS et IRSA</li>
+                    <li>Support email</li>
+                </ul>
+            </div>
+            <div class="pricing-card premium">
+                <h3>Premium</h3>
+                <p><strong>25 000 Ar</strong> / salarié</p>
+                <ul>
+                    <li>Tout le Basique</li>
+                    <li>Reporting avancé</li>
+                    <li>Support téléphonique dédié</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Simulateur -->
+        <div class="simulator">
+            <h3>Simulateur de coût</h3>
+            <label for="employees">Nombre de salariés :</label>
+            <input type="number" id="employees" min="1" value="1">
+            <label for="plan">Offre :</label>
+            <select id="plan">
+                <option value="basique">Basique</option>
+                <option value="premium">Premium</option>
+            </select>
+            <label for="period">Période (mois) :</label>
+            <input type="number" id="period" min="1" value="1">
+            <p>Total : <span id="total">0 Ar</span></p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="fade-in">
+        <h2>Contactez-nous</h2>
+        <p>Email : contact@easypaie.com</p>
+        <p>Téléphone : +261 34 12 345 67</p>
+        <p>Adresse : Antananarivo, Madagascar</p>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 EASYPAIE. Tous droits réservés.</p>
+    </footer>
+
+    <!-- JS -->
+    <script>
+        // Scroll fade-in
+        window.addEventListener('scroll', () => {
+            document.querySelectorAll('.fade-in').forEach(el => {
+                const rect = el.getBoundingClientRect();
+                if(rect.top < window.innerHeight - 100){
+                    el.classList.add('visible');
+                }
+            });
+        });
+
+        // Simulateur
+        const employeesInput = document.getElementById('employees');
+        const planSelect = document.getElementById('plan');
+        const periodInput = document.getElementById('period');
+        const totalDisplay = document.getElementById('total');
+
+        function updateTotal() {
+            const employees = parseInt(employeesInput.value) || 0;
+            const period = parseInt(periodInput.value) || 0;
+            const plan = planSelect.value;
+            let price = plan === 'basique' ? 15000 : 25000;
+            const total = employees * price * period;
+            totalDisplay.textContent = total.toLocaleString('fr-FR') + ' Ar';
+        }
+
+        employeesInput.addEventListener('input', updateTotal);
+        planSelect.addEventListener('change', updateTotal);
+        periodInput.addEventListener('input', updateTotal);
+        updateTotal();
+    </script>
+</body>
+</html>
