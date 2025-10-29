@@ -4,22 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EASYPAIE - Gestion de Paie</title>
-    
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <!-- CSS -->
-    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
     <!-- Header / Navbar -->
     <header>
         <nav>
-            <img src="static/img/logo.png" alt="Logo EASYPAIE" class="logo">
+            <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo EASYPAIE" class="logo">
             <ul>
                 <li><a href="#about">À propos</a></li>
                 <li><a href="#services">Services</a></li>
                 <li><a href="#tarifs">Tarifs</a></li>
+                <li><a href="#partners">Partenaires</a></li>
+                <li><a href="#testimonials">Témoignages</a></li>
+                <li><a href="#faq">FAQ</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
@@ -28,7 +29,7 @@
     <!-- Hero Section -->
     <section id="hero" class="hero fade-in">
         <div class="hero-content">
-            <h1>GESTION DE PAIE — SIMPLE & SÉCURISÉ</h1>
+            <h1 style="font-style:italic;">GESTION DE PAIE — SIMPLE & SÉCURISÉ</h1>
             <p>Externalisez la paie. Respectez la législation. Gagnez du temps.<br>EASYPAIE gère la paie de A à Z pour votre entreprise.</p>
             <a href="#tarifs" class="btn btn-main">Voir les tarifs</a>
             <a href="#contact" class="btn btn-outline-primary">Contactez-nous</a>
@@ -38,29 +39,31 @@
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="fade-in">
-        <h2>À propos de EASYPAIE</h2>
+   <section id="about" class="fade-in">
+    <h2 style="font-style:italic;">À propos de EASYPAIE</h2>
+    <div class="about-text">
         <p>EASYPAIE est votre partenaire de confiance pour la gestion complète de la paie. Nous assurons conformité légale, fiabilité et rapidité pour toutes les entreprises, petites ou grandes.</p>
         <p>Notre équipe experte se charge de tout : calculs salariaux, déclarations sociales et fiscales, rapports personnalisés. Vous gagnez du temps et réduisez les risques d'erreurs.</p>
-    </section>
+    </div>
+</section>
+
 
     <!-- Services Section -->
     <section id="services" class="fade-in">
-        <h2>Nos Services</h2>
+        <h2 style="font-style:italic;">Nos Services</h2>
         <div class="services-container">
             <div class="service-card">
-                <img src="static/img/service1.png" alt="Service 1">
+                <img src="{{ url_for('static', filename='img/service1.png') }}" alt="Service 1">
                 <h3>Gestion de Paie</h3>
                 <p>Calcul complet des salaires, déclarations sociales et bulletins personnalisés.</p>
             </div>
             <div class="service-card">
-                <img src="static/img/service2.png" alt="Service 2">
+                <img src="{{ url_for('static', filename='img/service2.png') }}" alt="Service 2">
                 <h3>Reporting & Analyse</h3>
                 <p>Tableaux de bord et rapports pour un suivi précis de votre masse salariale.</p>
             </div>
             <div class="service-card">
-                <img src="static/img/service3.png" alt="Service 3">
+                <img src="{{ url_for('static', filename='img/service3.png') }}" alt="Service 3">
                 <h3>Accompagnement Légal</h3>
                 <p>Conseil en conformité légale et optimisation des coûts liés à la paie.</p>
             </div>
@@ -69,7 +72,7 @@
 
     <!-- Tarifs Section -->
     <section id="tarifs" class="fade-in">
-        <h2>Nos Tarifs</h2>
+        <h2 style="font-style:italic;">Nos Tarifs</h2>
         <div class="pricing">
             <div class="pricing-card">
                 <h3>Basique</h3>
@@ -93,64 +96,86 @@
 
         <!-- Simulateur -->
         <div class="simulator">
-            <h3>Simulateur de coût</h3>
-            <label for="employees">Nombre de salariés :</label>
-            <input type="number" id="employees" min="1" value="1">
-            <label for="plan">Offre :</label>
-            <select id="plan">
-                <option value="basique">Basique</option>
-                <option value="premium">Premium</option>
-            </select>
-            <label for="period">Période (mois) :</label>
-            <input type="number" id="period" min="1" value="1">
-            <p>Total : <span id="total">0 Ar</span></p>
+            <h3 style="font-style:italic;">Simulateur de coût</h3>
+            <form id="simulator-form">
+                <label for="employees">Nombre de salariés :</label>
+                <input type="number" id="employees" min="1" value="1">
+
+                <label for="plan">Offre :</label>
+                <select id="plan">
+                    <option value="basique">Basique</option>
+                    <option value="premium">Premium</option>
+                </select>
+
+                <label for="period">Période (mois) :</label>
+                <input type="number" id="period" min="1" value="1">
+
+                <p>Total : <span id="total">15 000 Ar</span></p>
+            </form>
+        </div>
+    </section>
+
+    <!-- Partners Section -->
+    <section id="partners" class="fade-in">
+        <h2 style="font-style:italic;">Nos Partenaires</h2>
+        <div class="partners-container">
+            <img src="{{ url_for('static', filename='img/hardy.png') }}" alt="Hardy.mdg">
+            <img src="{{ url_for('static', filename='img/ispm.png') }}" alt="ISPM">
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="fade-in">
+        <h2 style="font-style:italic;">Témoignages</h2>
+        <div class="testimonial">
+            <p>"Grâce à EASYPAIE, nous avons réduit nos erreurs de paie à zéro !"</p>
+            <span>— Société XYZ</span>
+        </div>
+        <div class="testimonial">
+            <p>"Service rapide et professionnel. Je recommande !"</p>
+            <span>— Entreprise ABC</span>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="fade-in">
+        <h2 style="font-style:italic;">FAQ</h2>
+        <div class="faq-item">
+            <p><strong>Q :</strong> Quels documents dois-je fournir pour externaliser la paie ?</p>
+            <p><strong>R :</strong> Juste les contrats de travail, bulletins précédents et informations fiscales.</p>
+        </div>
+        <div class="faq-item">
+            <p><strong>Q :</strong> Puis-je modifier le nombre de salariés à tout moment ?</p>
+            <p><strong>R :</strong> Oui, nos offres sont flexibles selon vos besoins.</p>
         </div>
     </section>
 
     <!-- Contact Section -->
     <section id="contact" class="fade-in">
-        <h2>Contactez-nous</h2>
-        <p>Email : contact@easypaie.com</p>
-        <p>Téléphone : +261 34 12 345 67</p>
+        <h2 style="font-style:italic;">Contactez-nous</h2>
+        <form class="contact-form">
+            <input type="text" name="name" placeholder="Nom" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <textarea name="message" placeholder="Message" required></textarea>
+            <button type="submit" class="btn btn-main">Envoyer</button>
+        </form>
+        <p>Email : Commercial@easypaie.mg</p>
+        <p>Téléphone : +261 32 38 94 801</p>
+        <p>WhatsApp : +261 32 38 94 801</p>
         <p>Adresse : Antananarivo, Madagascar</p>
     </section>
 
     <!-- Footer -->
     <footer>
         <p>&copy; 2025 EASYPAIE. Tous droits réservés.</p>
+        <p>Mentions légales | Politique de confidentialité | Conditions générales</p>
+        <p>Suivez-nous : 
+            <img src="{{ url_for('static', filename='img/facebook.png') }}" alt="Facebook" class="social-logo">
+            <img src="{{ url_for('static', filename='img/linkedin.png') }}" alt="LinkedIn" class="social-logo">
+        </p>
     </footer>
 
     <!-- JS -->
-    <script>
-        // Scroll fade-in
-        window.addEventListener('scroll', () => {
-            document.querySelectorAll('.fade-in').forEach(el => {
-                const rect = el.getBoundingClientRect();
-                if(rect.top < window.innerHeight - 100){
-                    el.classList.add('visible');
-                }
-            });
-        });
-
-        // Simulateur
-        const employeesInput = document.getElementById('employees');
-        const planSelect = document.getElementById('plan');
-        const periodInput = document.getElementById('period');
-        const totalDisplay = document.getElementById('total');
-
-        function updateTotal() {
-            const employees = parseInt(employeesInput.value) || 0;
-            const period = parseInt(periodInput.value) || 0;
-            const plan = planSelect.value;
-            let price = plan === 'basique' ? 15000 : 25000;
-            const total = employees * price * period;
-            totalDisplay.textContent = total.toLocaleString('fr-FR') + ' Ar';
-        }
-
-        employeesInput.addEventListener('input', updateTotal);
-        planSelect.addEventListener('change', updateTotal);
-        periodInput.addEventListener('input', updateTotal);
-        updateTotal();
-    </script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </body>
 </html>

@@ -29,7 +29,7 @@ def index():
             offre = request.form.get("offre")
             nb_salaries = int(request.form.get("nb_salaries"))
             periode = int(request.form.get("periode"))
-            
+
             if offre == "basique":
                 total = (BASE_BASIC + PER_EMPLOYEE_BASIC * nb_salaries) * periode
             else:
@@ -49,7 +49,6 @@ def index():
                            )
 
 if __name__ == "__main__":
-    # Déploiement : host=0.0.0.0 pour être accessible depuis Internet
-    # Le port est fourni par la plateforme, sinon 5000 par défaut
+    # Pour le développement local seulement
     port = int(os.environ.get("PORT", 5000))
-    app.run(host="0.0.0.0", port=port)
+    app.run(host="0.0.0.0", port=port, debug=True)
